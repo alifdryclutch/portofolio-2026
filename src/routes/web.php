@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use Illuminate\Support\Facades\Response;
-
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ContactController;
 /* NOTE: Do Not Remove
 / Livewire asset handling if using sub folder in domain
 */
@@ -18,6 +19,7 @@ Livewire::setScriptRoute(function ($handle) {
 /*
 / END
 */
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
+Route::post('/contact', [ContactController::class, 'store']);
+Route::get('/portfolio/{id}', [HomeController::class, 'show']);
+Route::get('/portfolio/{id}/report', [HomeController::class, 'report'])->name('portfolio.report');
