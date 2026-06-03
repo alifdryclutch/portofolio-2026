@@ -16,6 +16,7 @@
         .report-summary,
         .report-section {
             background: rgba(255, 255, 255, 0.95);
+            color: #0f172a;
             border-radius: 1rem;
             padding: 2rem;
             margin-bottom: 1.5rem;
@@ -24,6 +25,11 @@
         .report-summary h2,
         .report-section h3 {
             margin-bottom: 1rem;
+            color: #0f172a;
+        }
+        .report-summary p,
+        .report-section p {
+            color: #334155;
         }
         .tech-stack {
             display: flex;

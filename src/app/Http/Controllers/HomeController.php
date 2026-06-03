@@ -3,14 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Contact;
+use App\Models\User;
 
 class HomeController extends Controller
 {
     public function index()
     {
         $projects = Project::all();
+        $contact = Contact::latest()->first();
+        $profileUser = User::first();
 
-        return view('home', compact('projects'));
+        return view('home', compact('projects', 'contact', 'profileUser'));
     }
 
     public function show($id)

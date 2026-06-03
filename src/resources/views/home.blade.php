@@ -24,12 +24,17 @@
         <section id="banner">
             <div class="content">
                 <header>
-                    <h2>Muhammad Aliff Al Fitroh</h2>
-                    <p>Saya Muhammad Aliff Al Fitroh, mahasiswa Program Studi Teknik Informatika yang memiliki ketertarikan pada pengembangan sistem informasi dan web development. Saya berfokus dalam mempelajari serta membangun aplikasi berbasis web dengan dukungan teknologi seperti Filament v3, Livewire, Blade, dan MariaDB.
+                    <h2>{{ $profileUser->name }}</h2>
+                    <p>Saya {{ $profileUser->name  }}, mahasiswa Program Studi Teknik Informatika yang memiliki ketertarikan pada pengembangan sistem informasi dan web development. Saya berfokus dalam mempelajari serta membangun aplikasi berbasis web dengan dukungan teknologi seperti Filament v3, Livewire, Blade, dan MariaDB.
 
 </p>
                 </header>
-                <span class="image"><img src="{{ asset('images/pic01.jpg') }}" alt="Portfolio banner" /></span>
+                <span class="image">
+                    <img
+                        src="{{ $profileUser && $profileUser->avatar_url ? asset('storage/' . $profileUser->avatar_url) : asset('images/pic01.jpg') }}"
+                        alt="{{ $profileUser->name ?? 'Portfolio banner' }}"
+                    />
+                </span>
             </div>
             <a href="#portfolio" class="goto-next scrolly">Lihat Portfolio</a>
         </section>
@@ -73,6 +78,14 @@
                     <h2>Hubungi Saya</h2>
                     <p>Ingin bekerja sama? Isi form di bawah dan kirim pesan.</p>
                 </header>
+
+                @if(isset($contact))
+                    <div class="contact-details" style="margin-bottom: 1.5rem; background: rgba(255,255,255,0.95); padding: 1rem; border-radius: 0.75rem;">
+                        <p><strong>Nama:</strong> {{ $contact->name }}</p>
+                        <p><strong>Email:</strong> {{ $contact->email }}</p>
+                        <p><strong>Pesan:</strong> {{ $contact->message }}</p>
+                    </div>
+                @endif
 
                 <form method="POST" action="{{ url('/contact') }}">
                     @csrf
